@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide de Trading GOATTY</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            page-break-after: always;
+        }
+        
+        /* Responsive pour mobile */
+        @media screen and (max-width: 768px) {
+            .page {
+                width: 100%;
+                min-height: 100vh;
+                padding: 15px;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+        
+        .page:last-child {
+            page-break-after: avoid;
+        }
+        
+        /* Page de couverture */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(-100px); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+        
+        .cover-content {
+            z-index: 2;
+            position: relative;
+        }
+        
+        .cover-emoji {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cover-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cover-author {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Mobile responsive pour couverture */
+        @media screen and (max-width: 768px) {
+            .cover-title {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+            
+            .cover-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0 10px;
+            }
+            
+            .cover-author {
+                font-size: 1.2rem;
+                margin-top: 2rem;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .cover-emoji {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        .cover-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Mobile responsive pour badge */
+        @media screen and (max-width: 768px) {
+            .cover-badge {
+                top: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Styles généraux */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: #4a5568;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem 0;
+            color: #667eea;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Mobile responsive pour typographie */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+                margin: 1.5rem 0 0.8rem 0;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+                margin: 1.2rem 0 0.8rem 0;
+            }
+            
+            p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                text-align: left;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote-box {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: #28a745;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        /* Mobile responsive pour boîtes */
+        @media screen and (max-width: 768px) {
+            .intro-box, .quote-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 0 6px 6px 0;
+            }
+            
+            .quote-box::before {
+                font-size: 3rem;
+                top: -8px;
+                left: 8px;
+            }
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .chapter-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .chapter-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .anecdote-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .anecdote-box::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #fff3cd;
+            padding: 0 5px;
+            font-size: 1.2rem;
+        }
+        
+        /* Mobile responsive pour chapitres et anecdotes */
+        @media screen and (max-width: 768px) {
+            .chapter-header {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 6px;
+            }
+            
+            .chapter-number {
+                font-size: 0.8rem;
+            }
+            
+            .chapter-title {
+                font-size: 1.1rem;
+            }
+            
+            .anecdote-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 6px;
+            }
+            
+            .anecdote-box::before {
+                top: -8px;
+                left: 10px;
+                font-size: 1rem;
+            }
+        }
+        
+        .teaser-list {
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .teaser-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .teaser-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .teaser-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button {
+            background: white;
+            color: #ff6b6b;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 1rem 0;
+            transition: all 0.3s;
+        }
+        
+        /* Mobile responsive pour CTA et listes */
+        @media screen and (max-width: 768px) {
+            .teaser-list {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 6px;
+            }
+            
+            .teaser-list li {
+                padding-left: 1.2rem;
+                font-size: 0.95rem;
+            }
+            
+            .cta-box {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+                border-radius: 8px;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .bonus-box {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        
+        .bonus-box h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile responsive pour bonus et footer */
+        @media screen and (max-width: 768px) {
+            .bonus-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 6px;
+            }
+            
+            .bonus-box ul {
+                padding-left: 1rem;
+            }
+            
+            .bonus-box li {
+                font-size: 0.9rem;
+                margin: 0.3rem 0;
+            }
+            
+            .footer {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Optimisations tactiles */
+        @media screen and (max-width: 768px) {
+            .cta-button:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .cta-button:active {
+                transform: scale(0.98);
+            }
+            
+            /* Espacement pour les pouces */
+            .teaser-list li {
+                padding: 0.3rem 0;
+                padding-left: 1.2rem;
+            }
+            
+            /* Texte plus lisible sur mobile */
+            .highlight {
+                background: #667eea;
+                color: white;
+                padding: 0 0.2rem;
+                border-radius: 3px;
+                -webkit-text-fill-color: white;
+            }
+        }
+        
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page de couverture -->
+    <div class="page cover-page">
+        <div class="cover-badge">EXTRAIT GRATUIT</div>
+        <div class="cover-content">
+            <div class="cover-emoji">📈</div>
+            <h1 class="cover-title">J'ai galéré 4 ans en trading avant de comprendre ça…</h1>
+            <p class="cover-subtitle">Extrait gratuit du guide complet<br>"Je voulais juste faire de l'argent… et j'ai appris à trader"</p>
+            <div class="cover-author">Par GOATTY</div>
+        </div>
+    </div>
+
+    <!-- Page d'introduction -->
+    <div class="page">
+        <h1>📝 Introduction</h1>
+        
+        <div class="intro-box">
+            <p>Je m'appelle <strong>GOATTY</strong>, j'ai 20 ans, étudiant en data science, et je trade depuis mes 16 ans.</p>
+            
+            <p>Ce que tu t'apprêtes à lire, c'est une partie de mon histoire. Une histoire vraie. Pas un conte de fée. J'ai commencé par envie d'argent, j'ai connu les désillusions, la précipitation, les comptes cramés.</p>
+            
+            <p>Mais avec le temps, l'expérience et les erreurs, j'ai commencé à voir plus clair.</p>
+            
+            <p>Si tu débutes, si tu es perdu, ou si tu penses être le seul à galérer… cet extrait est pour toi.</p>
+            
+            <p>Et si tu veux aller plus loin, je t'explique à la fin comment accéder au guide complet. <strong>Let's go.</strong></p>
+        </div>
+    </div>
+
+    <!-- Chapitre 1 - Page 1 -->
+    <div class="page">
+        <div class="chapter-header">
+            <div class="chapter-number">CHAPITRE 1</div>
+            <div class="chapter-title">"Je voulais juste faire de l'argent"</div>
+        </div>
+
+        <p>Tout a commencé en classe de troisième. Je voyais des gars de mon âge vivre une vie que moi je ne pouvais même pas rêver : voyages, habits, restos… Ils profitaient à fond. Moi, je venais d'une famille très modeste. Fier de mes origines, mais frustré de ne pas pouvoir faire plus. J'ai compris que si je voulais changer ça, il fallait que <span class="highlight">je gagne de l'argent.</span></p>
+
+        <p>J'ai commencé à taper sur YouTube : <em>comment gagner de l'argent en ligne</em>. J'ai regardé toutes les vidéos d'Ibrahima Kamara à l'époque, pour ceux qui connaissent. J'ai essayé de tout faire… sauf que je n'avais même pas d'ordi. Ensuite j'ai vu le dropshipping avec Yomi Denzel… mais trop compliqué, pas pour moi.</p>
+
+        <p>Puis un jour, je suis tombé sur <span class="highlight">le trading</span>. Direct, j'ai accroché. Je me suis dit : <em>"ça, c'est mon truc. Je peux y arriver, et vite."</em> Je pensais faire de l'argent rapidement, en quelques mois. Je n'avais aucune idée de ce qui m'attendait.</p>
+
+        <p>J'ai commencé à regarder des vidéos jour et nuit. C'est en seconde que j'ai vraiment commencé à m'immerger. Je pensais qu'en deux mois, je serais riche. <span class="highlight">Erreur.</span></p>
+    </div>
+
+    <!-- Chapitre 1 - Page 2 -->
+    <div class="page">
+        <h2>💡 Une anecdote qui m'a marqué</h2>
+        
+        <div class="anecdote-box">
+            <p>J'ai pris des centaines de trades en 4 ans. Des entrées ultra précises, des RR de malade : 1:8, 1:10, 1:15. Et pourtant, j'étais <strong>pas rentable</strong>.</p>
+            
+            <p>Pourquoi ? Parce que la rentabilité, ce n'est pas la beauté d'un trade, c'est la <span class="highlight">discipline sur la durée</span>.</p>
+            
+            <p>Un jour, je me sentais prêt. Nouvelle stratégie, bon backtest… Je prends une prop firm. Premier jour : je suis face au marché. J'analyse. Et au moment d'agir… <strong>je bloque</strong>. Indécis. J'entre quand même, au hasard, sans respecter mon plan.</p>
+            
+            <p>Résultat : perte. Mon mental a pris un coup. Et toute la semaine, j'ai enchaîné les erreurs. J'ai cramé le compte.</p>
+            
+            <p>Pas parce que la stratégie était mauvaise, mais parce que <span class="highlight">ma psychologie n'était pas prête</span>.</p>
+        </div>
+
+        <h2>🔄 Ce qui a tout changé</h2>
+        
+        <p>Il y a 2 mois, je suis tombé sur une vidéo de <strong>Kasper</strong>. Il parlait d'une stratégie simple : du 1:1, tous les jours. Moins de stress, plus de constance. Et là j'ai compris :</p>
+        
+        <div class="quote-box">
+            Et si le chemin le plus simple… était le meilleur ?
+        </div>
+        
+        <p>Aujourd'hui, j'applique une méthode claire, facile, que je maîtrise. Je suis sur une prop firm et un compte réel que je fais grandir petit à petit.</p>
+        
+        <p>Je ne cours plus après les gros gains. Je cherche la <span class="highlight">régularité, la simplicité, la discipline</span>.</p>
+    </div>
+
+    <!-- Page teaser -->
+    <div class="page">
+        <h1>🔍 Dans le guide complet</h1>
+        
+        <div class="teaser-list">
+            <p><strong>Je t'explique en détail :</strong></p>
+            <ul>
+                <li>Les 3 erreurs qui m'ont fait perdre des années</li>
+                <li>Ma stratégie actuelle détaillée</li>
+                <li>Comment je gère le risque</li>
+                <li>Ma routine de trading</li>
+                <li>Et surtout : <strong>comment tu peux éviter de galérer comme moi</strong></li>
+            </ul>
+        </div>
+        
+        <div class="cta-box">
+            <h2 style="margin-top: 0; color: white;">✅ Tu veux le guide complet ?</h2>
+            <button class="cta-button">Clique ici pour l'obtenir 👉</button>
+            
+            <div class="bonus-box" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); margin-top: 2rem;">
+                <h3 style="color: white; margin-top: 0;">🎁 Avec le guide, tu reçois aussi :</h3>
+                <ul style="color: white; text-align: left; display: inline-block;">
+                    <li>Mon journal de trading</li>
+                    <li>Une checklist avant chaque trade</li>
+                    <li>Mon plan de trading à remplir</li>
+                    <li>Et mon Insta perso si tu veux échanger directement</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 GOATTY - Tous droits réservés</p>
+            <p>Ce document est un extrait gratuit du guide complet</p>
+        </div>
+    </div>
+</body>
+</html>
